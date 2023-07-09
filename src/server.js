@@ -7,6 +7,7 @@ import bodyParser from 'body-parser'
 import * as dotenv from 'dotenv'
 
 import routes from './routes/index.js'
+import connectDB from './database/index.js'
 
 /**
  * App Variables
@@ -38,6 +39,7 @@ routes(app)
 /**
  * Server Activation
  */
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+    await connectDB()
     console.log(`Example app listening on port ${PORT}`)
 })
