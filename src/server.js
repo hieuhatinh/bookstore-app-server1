@@ -6,8 +6,8 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import * as dotenv from 'dotenv'
 
-import routes from './routes/index.js'
 import connectDB from './database/index.js'
+import api from './api/index.js'
 
 /**
  * App Variables
@@ -16,7 +16,6 @@ dotenv.config()
 
 const PORT = process.env.PORT
 const app = express()
-const Router = express.Router()
 
 if (!PORT) {
     process.exit(1)
@@ -33,8 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // routes
-// Router.use('api/v1/', routes(app))
-routes(app)
+api(app)
 
 /**
  * Server Activation
